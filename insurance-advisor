@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# insurance-advisor — 统一入口脚本
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+COMMAND=${1:-""}
+
+case "$COMMAND" in
+    sync)
+        bash "$BASE_DIR/scripts/sync.sh"
+        ;;
+    assess)
+        shift
+        bash "$BASE_DIR/scripts/assess.sh" "$@"
+        ;;
+    recommend)
+        shift
+        bash "$BASE_DIR/scripts/recommend.sh" "$@"
+        ;;
+    *)
+        echo "Usage: insurance-advisor <command> [args]"
+        echo "Commands:"
+        echo "  sync       - Synchronize PDF plugins to knowledge base"
+        echo "  assess     - Analyze health and financial profile"
+        echo "  recommend  - Get insurance recommendations"
+        exit 1
+        ;;
+esac
