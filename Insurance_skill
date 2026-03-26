@@ -17,7 +17,7 @@ case "$COMMAND" in
         bash "$BASE_DIR/scripts/recommend.sh" "$@"
         ;;
     *)
-        echo "Usage: insurance-advisor <command> [args]"
+        echo "Usage: Insurance_skill <command> [args]"
         echo "Commands:"
         echo "  sync       - Synchronize PDF plugins to knowledge base"
         echo "  assess     - Analyze health and financial profile"

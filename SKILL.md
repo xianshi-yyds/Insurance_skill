@@ -7,6 +7,10 @@ homepage: https://bytesagain.com
 ---
 # insurance-advisor
 基于 PDF 知识库的专业保险顾问。
+# Insurance_skill
+
+## 简介
+一款基于深度 PDF 知识库解析的保险咨询与建议工具。它能够根据用户的健康、财务状况，从本地挂载的保险 PDF 知识库中寻找最匹配的方案。
 
 ## 核心能力
 1. **健康状况分析**：基于《众民保2026》健康告知规则，判断用户可投性。
@@ -19,14 +23,15 @@ homepage: https://bytesagain.com
 
 ```bash
 # 0. 同步外挂知识库 (如有新 PDF 放入 plugins/)
-insurance-advisor sync
+Insurance_skill sync
 
 # 1. 进行健康与财务分析
 # 参数: <年龄> <性别> <职业> <月收入> [既往病史...]
-insurance-advisor assess 35 男 程序猿 25000 脂肪肝
+Insurance_skill assess 35 男 程序猿 25000 脂肪肝
 
-# 2. 获取针对性产品推荐 (通常紧随 assess 后使用)
-insurance-advisor recommend "<assess输出的画像数据>"
+# 2. 获取定制保障建议
+# 参数: <assess 输出的 PROFILE_DATA 字符串>
+Insurance_skill recommend "#PROFILE_DATA#|35|男|程序猿|25000|false|false|脂肪肝"
 ```
 
 ## 推荐工作流 (AI 自动执行)
