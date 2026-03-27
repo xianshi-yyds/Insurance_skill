@@ -20,8 +20,9 @@ case "$COMMAND" in
         echo "Usage: Insurance_skill <command> [args]"
         echo "Commands:"
         echo "  sync       - Synchronize PDF plugins to knowledge base"
-        echo "  assess     - Analyze health and financial profile"
-        echo "  recommend  - Get insurance recommendations"
+        echo "  assess     - Analyze deep health/financial profile"
+        echo "               Args: <age> <gender> <job> <income> <loan:y/n> <dependents:y/n> <existing> [history]"
+        echo "  recommend  - Generate professional Insurance Proposal"
         exit 1
         ;;
 esac

@@ -1,44 +1,36 @@
----
-version: "3.0.0"
-name: insurance-advisor
-description: "保险方案顾问（PDF知识库版）。支持健康状况分析、严重既往症检查、中高端医疗险及美元储蓄险推荐。Insurance advisor with health assessment and product recommendation based on latest product PDFs."
-author: BytesAgain
-homepage: https://bytesagain.com
----
-# insurance-advisor
-基于 PDF 知识库的专业保险顾问。
 # Insurance_skill
 
 ## 简介
-一款基于深度 PDF 知识库解析的保险咨询与建议工具。它能够根据用户的健康、财务状况，从本地挂载的保险 PDF 知识库中寻找最匹配的方案。
+Insurance_skill 是一款深度集成 PDF 知识库的 AI 保险专家。它摒弃了肤浅的推销口吻，通过对用户**健康状况、财务杠杆、家庭责任**的深度建模，生成结构化的**“保障规划建议书 (Corporate Proposal)”**。
 
 ## 核心能力
-1. **健康状况分析**：基于《众民保2026》健康告知规则，判断用户可投性。
+1. **全维度画像**：不仅看收入，更考虑房贷压力、赡养责任、既往病史及存量保障。
 2. **知识库支撑**：
-   - **众民保·中高端医疗险 2026**：高龄、带病、高危职业友好。
-   - **AIA 爱伴航/环宇盈活**：美元长期/中期储蓄计划。
-3. **精准评估**：通过 `assess` 采集信息，`recommend` 生成闭环方案。
+   - **众民保·医疗险 2026**：解决“带病、高龄、高危职业”的就医难点。
+   - **AIA 美元储蓄计划**：构建离岸资产对冲长周期重疾风险。
+3. **专业企划书输出**：自动生成包含 4 大模块的专业建议书。
 
 ## 命令速查
 
 ```bash
-# 0. 同步外挂知识库 (如有新 PDF 放入 plugins/)
+# 0. 同步 PDF 插件 (放入新 PDF 后执行)
 Insurance_skill sync
 
-# 1. 进行健康与财务分析
-# 参数: <年龄> <性别> <职业> <月收入> [既往病史...]
-Insurance_skill assess 35 男 程序猿 25000 脂肪肝
+# 1. 深度画像获取 (采集家庭责任与既往史)
+# 参数顺序: <年龄> <性别> <职业> <月收入> <有无房贷:y/n> <有无赡养责任:y/n> <原有保障> [既往病史]
+# 示例:
+Insurance_skill assess 30 男 互联网大厂 33000 y y 社保 高血压
 
-# 2. 获取定制保障建议
-# 参数: <assess 输出的 PROFILE_DATA 字符串>
-Insurance_skill recommend "#PROFILE_DATA#|35|男|程序猿|25000|false|false|脂肪肝"
+# 2. 生成“企业企划书”
+# 参数: <assess 命令输出的完整画像字符串>
+Insurance_skill recommend "<画像数据>"
 ```
 
-## 推荐工作流 (AI 自动执行)
-1. 询问用户年龄、职业、收入及身体状况。
-2. 调用 `bash scripts/assess.sh` 分析风险。
-3. 调用 `bash scripts/recommend.sh` 匹配 PDF 知识库中的产品。
-4. 解答关于《众民保》或《AIA储蓄险》的细节问题。
+## 推荐工作流
+1. 询问客户的家庭经济构成（房贷、赡养）与健康现状。
+2. 调用 `assess` 建立深度画像，并展示风险初步评级。
+3. 调用 `recommend` 生成正式的建议书文档。
+4. 针对建议书中的“精算理由”或“赔付规则”提供实时条款解答。
 
 ---
-💬 Powered by BytesAgain | 知识库源自 7 份最新保险产品 PDF
+💬 Powered by Insurance_skill | 无损解析 7+ 份核心保险 PDF || 动态外挂架构
