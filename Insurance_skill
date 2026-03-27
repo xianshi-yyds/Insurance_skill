@@ -16,13 +16,17 @@ case "$COMMAND" in
         shift
         bash "$BASE_DIR/scripts/recommend.sh" "$@"
         ;;
+    bulk-gen)
+        shift
+        bash "$BASE_DIR/scripts/bulk_generate.sh" "$@"
+        ;;
     *)
         echo "Usage: Insurance_skill <command> [args]"
         echo "Commands:"
         echo "  sync       - Synchronize PDF plugins to knowledge base"
         echo "  assess     - Analyze deep health/financial profile"
-        echo "               Args: <age> <gender> <job> <income> <loan:y/n> <dependents:y/n> <existing> [history]"
         echo "  recommend  - Generate professional Insurance Proposal"
+        echo "  bulk-gen   - Batch generate 5 typical persona proposals"
         exit 1
         ;;
 esac
